@@ -62,8 +62,8 @@ EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.console.Em
 CHANGE_NOTIFICATIONS_MIN_INTERVAL = 120  # seconds
 
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'system@taiga.io')
-EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'False') == 'True'
-EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', 'False') == 'True'
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'False').lower() == 'true'
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', 'False').lower() == 'true'
 EMAIL_HOST = os.getenv('EMAIL_HOST', 'localhost')
 EMAIL_PORT = os.getenv('EMAIL_PORT', 587)
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'user')
@@ -73,8 +73,8 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'password')
 #########################################
 ## SESSION
 #########################################
-SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', 'True') == 'True'
-CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE', 'True') == 'True'
+SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', 'True').lower() == 'true'
+CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE', 'True').lower() == 'true'
 
 
 #########################################
@@ -89,7 +89,7 @@ EVENTS_PUSH_BACKEND_OPTIONS = {
 #########################################
 ## TAIGA ASYNC
 #########################################
-CELERY_ENABLED = os.getenv('CELERY_ENABLED', 'True') == 'True'
+CELERY_ENABLED = os.getenv('CELERY_ENABLED', 'True').lower() == 'true'
 from kombu import Queue  # noqa
 
 CELERY_BROKER_URL = f"amqp://{ os.getenv('RABBITMQ_USER') }:{ os.getenv('RABBITMQ_PASS') }@taiga-async-rabbitmq:5672/taiga"
@@ -128,19 +128,19 @@ GITLAB_URL = os.getenv('GITLAB_URL')
 #########################################
 ## TELEMETRY
 #########################################
-ENABLE_TELEMETRY = os.getenv('ENABLE_TELEMETRY', 'True') == 'True'
+ENABLE_TELEMETRY = os.getenv('ENABLE_TELEMETRY', 'True').lower() == 'true'
 
 
 #########################################
 ##  REGISTRATION
 #########################################
-PUBLIC_REGISTER_ENABLED = os.getenv('PUBLIC_REGISTER_ENABLED', 'False') == 'True'
+PUBLIC_REGISTER_ENABLED = os.getenv('PUBLIC_REGISTER_ENABLED', 'False').lower() == 'true'
 
 
 #########################################
 ##  IMPORTERS
 #########################################
-ENABLE_GITHUB_IMPORTER = os.getenv('ENABLE_GITHUB_IMPORTER', 'False') == 'True'
+ENABLE_GITHUB_IMPORTER = os.getenv('ENABLE_GITHUB_IMPORTER', 'False').lower() == 'true'
 if ENABLE_GITHUB_IMPORTER:
     IMPORTERS["github"] = {
         "active": True,
@@ -148,7 +148,7 @@ if ENABLE_GITHUB_IMPORTER:
         "client_secret": os.getenv('GITHUB_IMPORTER_CLIENT_SECRET')
     }
 
-ENABLE_JIRA_IMPORTER = os.getenv('ENABLE_JIRA_IMPORTER', 'False') == 'True'
+ENABLE_JIRA_IMPORTER = os.getenv('ENABLE_JIRA_IMPORTER', 'False').lower() == 'true'
 if ENABLE_JIRA_IMPORTER:
     IMPORTERS["jira"] = {
         "active": True,
@@ -157,7 +157,7 @@ if ENABLE_JIRA_IMPORTER:
         "pub_cert": os.getenv('JIRA_IMPORTER_PUB_CERT')
     }
 
-ENABLE_TRELLO_IMPORTER = os.getenv('ENABLE_TRELLO_IMPORTER', 'False') == 'True'
+ENABLE_TRELLO_IMPORTER = os.getenv('ENABLE_TRELLO_IMPORTER', 'False').lower() == 'true'
 if ENABLE_TRELLO_IMPORTER:
     IMPORTERS["trello"] = {
         "active": True,
