@@ -85,7 +85,7 @@ EVENTS_PUSH_BACKEND_OPTIONS = {
 #########################################
 ## TAIGA ASYNC
 #########################################
-CELERY_ENABLED = os.getenv('CELERY_ENABLED', 'True') == 'True'
+CELERY_ENABLED = os.getenv('CELERY_ENABLED', 'True').lower() == 'true'
 
 from kombu import Queue  # noqa
 
